@@ -90,22 +90,22 @@ let history = useHistory();
 const home = (e) => {
 history.push("/");
 };
-const femme = (e) => {
-history.push("/produits/femmes");
+const women = (e) => {
+history.push("/produits/women");
 };
-const homme = (e) => {
-history.push("/produits/hommes");
+const men = (e) => {
+history.push("/produits/men");
 };
-const enfant = (e) => {
-history.push("/produits/enfants");
+const kids = (e) => {
+history.push("/produits/kids");
 };
   return ( 
     <Container>        
             <Menu>
                  <Left onClick={home}>Home</Left>
-                 <Center onClick={femme}>WOMEN</Center>
-                 <Right onClick={homme} >MEN</Right>
-                 <RightW onClick={enfant}>KIDS</RightW>
+                 <Center onClick={women}>WOMEN</Center>
+                 <Right onClick={men} >MEN</Right>
+                 <RightW onClick={kids}>KIDS</RightW>
             </Menu>
     </Container>)
 }
