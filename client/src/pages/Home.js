@@ -12,12 +12,19 @@ function Home() {
   
   return (
     <div>
+      {/* Announcement component */}
       <Announcement />
+      {/* Navbar component */}
       <Navbar />
+      {/* Slider component */}
       <Slider />
+      {/* Categories component */}
       <Categories />
+      {/* Products component */}
       <Products />
+      {/* Nouveautes component */}
       <Nouveautes />
+      {/* Footer component */}
       <Footer />
     </div>
   );

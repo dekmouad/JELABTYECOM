@@ -14,6 +14,7 @@ const cors = require("cors");
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
 
+// Connect to MongoDB
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -31,10 +32,12 @@ app.use("/api/panier", panierRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
 app.use("/api/newsletter", newsLetter);
+// Start the server
 
 app.listen(process.env.PORT || 8080, () => {
   console.log("Backend server is running!");
 });
+// Serve Swagger documentation
 
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 

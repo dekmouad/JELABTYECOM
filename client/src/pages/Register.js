@@ -63,18 +63,21 @@ const Button = styled.button`
 `
 
 export default function Register() {
+  // State variables
 
   const [inputs, setInputs] = useState();
   const [errors, setErrors] = useState();
   const dispatch = useDispatch();
 
+  // Handle input change
 
   const handleChange = (e) => {
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
-  
+    // Handle register button click
+
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -83,21 +86,25 @@ export default function Register() {
     }
   };
 
-  
+    // Form validation
+
   const validate = () => {
     let input = inputs;
     let errors = {};
     let isValid = true;
+    // Check for empty name field
 
     if (!input["name"]) {
       isValid = false;
       errors["name"] = true;
     }
+    // Check for empty email field
 
     if (!input["email"]) {
       isValid = false;
       errors["email"] = true;
     }
+    // Check email format
 
     if (typeof input["email"] !== "undefined") {
         
@@ -107,29 +114,34 @@ export default function Register() {
         errors["email"] = true;
       }
     }
+    // Check for empty password field
 
     if (!input["password"]) {
       isValid = false;
       errors["password"] = true;
     }
+    // Check for empty lastname field
 
     if (!input["lastname"]) {
       isValid = false;
       errors["lastname"] = true;
     }
+    // Check for empty username field
 
     if (!input["username"]) {
       isValid = false;
       errors["username"] = true;
     }
+    // Check for empty confirm_password field
 
     if (!input["confirm_password"]) {
       isValid = false;
       errors["confirm_password"] = true;
     }
+    // Check if password and confirm_password match
 
     if (typeof input["password"] !== "undefined" && typeof input["confirm_password"] !== "undefined") {
-      if (input["password"] != input["confirm_password"]) {
+      if (input["password"] !== input["confirm_password"]) {
         isValid = false;
         errors["password"] = true;
         errors["confirm_password"] = true;
@@ -146,16 +158,18 @@ export default function Register() {
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder="name" name="name" border={errors?.name ? "ok" : "" } onChange={handleChange}/>
-          <Input placeholder="lastname" name="lastname" border={errors?.lastname ? "ok" : "" } onChange={handleChange}/>
-          <Input placeholder="username" name="username" border={errors?.username ? "ok" : "" } onChange={handleChange}/>
-          <Input placeholder="email" name="email" border={errors?.email ? "ok" : "" } onChange={handleChange}/>
-          <Input placeholder="password" name="password" type="password" border={errors?.password ? "ok" : ""  } onChange={handleChange}/>
-          <Input placeholder="confirm password" name="confirm_password" type="password" border={errors?.confirm_password ? "ok" : "" } onChange={handleChange} />
+          <Input placeholder="name" name="name" border={errors?.name ? "ok" : "" } onChange={handleChange}/>          {/* Name input */}
+          <Input placeholder="lastname" name="lastname" border={errors?.lastname ? "ok" : "" } onChange={handleChange}/>{/* Lastname input */}
+          <Input placeholder="username" name="username" border={errors?.username ? "ok" : "" } onChange={handleChange}/>{/* Username input */}
+          <Input placeholder="email" name="email" border={errors?.email ? "ok" : "" } onChange={handleChange}/>{/* Email input */}
+          <Input placeholder="password" name="password" type="password" border={errors?.password ? "ok" : ""  } onChange={handleChange}/>{/* Password input */}
+          <Input placeholder="confirm password" name="confirm_password" type="password" border={errors?.confirm_password ? "ok" : "" } onChange={handleChange} />{/* Confirm Password input */}
+          {/* Agreement text */}
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
+          {/* Register button */}
           <Button onClick={handleClick}>CREATE</Button>
         </Form>
       </Wrapper>

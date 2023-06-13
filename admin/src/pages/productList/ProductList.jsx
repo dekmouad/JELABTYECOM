@@ -6,22 +6,31 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getProducts } from "../../redux/apiCalls";
 
+// React component for displaying a list of products
 export default function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
 
 
+  // Fetch products when the component mounts
   useEffect(() => {
     getProducts(dispatch);
   }, [dispatch]);
 
+    // Handle deletion of a product
   const handleDelete = (id) => {
     deleteProduct(id, dispatch);
   };
 
+    // Configuration for the columns in the DataGrid
+
   const columns = [
+        // ID column
+
     { field: "_id", headerName: "ID", width: 220 },
     {
+          // Product column
+
       field: "product",
       headerName: "Product",
       width: 200,
@@ -34,12 +43,16 @@ export default function ProductList() {
         );
       },
     },
+        // Stock column
+
     { field: "inStock", headerName: "Stock", width: 200 },
     {
       field: "price",
       headerName: "Price",
       width: 160,
     },
+        // Action column
+
     {
       field: "action",
       headerName: "Action",
@@ -60,9 +73,12 @@ export default function ProductList() {
     },
   ];
 
+    // Render the ProductList page
+
   return (
 
     <div className="productList">
+            {/*Link to create a new product*/}
       <Link to="/newproduct">
         <button className="productAddButton">Create</button>
       </Link>

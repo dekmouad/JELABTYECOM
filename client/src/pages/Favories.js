@@ -131,18 +131,25 @@ const ProductPrice = styled.div`
 
 
 export default function Favories() {
+      // Accessing state from Redux store
+
     const panier = useSelector((state) => state.wishlist);
+        // Accessing the history object from React Router
+
     const history = useHistory();
+    // Function to dispatch 'suppFavori' action
 
     const dispatch = useDispatch();
 
     const Click = () => {
         dispatch(suppFavori());
     };
+    // Function to navigate to a specific product page
 
     const clickProduit = (id) => {
      history.push(`/produit/${id}`)
     }
+    // Function to dispatch delete favorite product action
 
     const fermer = (produit) =>{
         dispatch(supprimerproduitFavori({produit}));
@@ -156,21 +163,27 @@ export default function Favories() {
             <Wrapper>
                 <Top>
                     <Link to={`/produits`}>
+                           {/* Link to continue shopping */}
                         <TopButton> Continue Shopping </TopButton>
                     </Link>
-                    <TopButton type="check" onClick={Click}> Confirm Your Cart</TopButton>
+                    {/* Button to empty the cart */}
+                    <TopButton type="check" onClick={Click}> empty Your Selection</TopButton>
                 </Top>
                 <Bottom>
                     <Info>
+                      {/* Render each product in the cart */}
                         { panier.produits.map((produit) => (
                             <Product onClick={() => clickProduit(produit._id)}>
                                 <ProductDetail>
                                     <Image src={produit.img} />
                                     <Details>
+                                      {/* Product name */}
                                         <ProductName>
                                             <b>Product:</b> {produit.title}
                                         </ProductName>
+                                        {/* Product color */}
                                         <ProductColor color={produit.color} />
+                                        {/* Product size */}
                                         <ProductSize>
                                             <b>Size:</b> {produit.size}
                                         </ProductSize>
@@ -178,10 +191,13 @@ export default function Favories() {
                                 </ProductDetail>
                                 <PriceDetail>
                                     <ProductAmountContainer>
+                                      {/* Product quantity */}
                                         <ProductAmount>{produit.quantite} </ProductAmount>
                                     </ProductAmountContainer>
+                                        {/* Product price */}
                                     <ProductPrice>{produit.price}.00 €</ProductPrice>
                                 </PriceDetail>
+                                {/* Button to remove the product from favorites */}
                                 <Close onClick={()=>fermer(produit)}  style={{cursor: "pointer" , marginRight:"10px"}}/>
                             </Product> ))}
                     </Info>

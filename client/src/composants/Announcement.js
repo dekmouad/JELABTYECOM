@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import mobile from '../responsive'
+// Styled component for the announcement container
 
 const Container = styled.div`
     background-color: darkred;

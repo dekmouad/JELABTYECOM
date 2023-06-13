@@ -15,12 +15,14 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+// Configuration for Redux Persist
+
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
 };
-
+// Combine reducers
 const rootReducer = combineReducers({
   user: userReducer,
   product: productReducer,
@@ -28,7 +30,10 @@ const rootReducer = combineReducers({
   orders: ordersReducer,
 });
 
+// Create a persisted reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// Configure the Redux store
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -39,5 +44,5 @@ export const store = configureStore({
       },
     }),
 });
-
+// Create the Redux Persistor
 export let persistor = persistStore(store);

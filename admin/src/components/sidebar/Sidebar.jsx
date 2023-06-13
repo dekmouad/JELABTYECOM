@@ -12,9 +12,11 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
+         {/* Dashboard Menu */}
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
+             {/* Home link */}
             <Link to="/" className="link">
               <li className="sidebarListItem ">
                 <LineStyle className="sidebarIcon" />
@@ -23,21 +25,25 @@ export default function Sidebar() {
             </Link>
           </ul>
         </div>
+           {/* Quick Menu */}
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
+             {/* Users link */}
             <Link to="/users" className="link">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 Users
               </li>
             </Link>
+                {/* Products link */}
             <Link to="/products" className="link">
               <li className="sidebarListItem">
                 <Storefront className="sidebarIcon" />
                 Products
               </li>
             </Link>
+            {/* Orders link */}
             <Link to="/orders" className="link">
               <li className="sidebarListItem">
                 <AttachMoney className="sidebarIcon" />
@@ -46,9 +52,11 @@ export default function Sidebar() {
             </Link>
           </ul>
         </div>
+          {/* Notifications Menu */}
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Notifications</h3>
           <ul className="sidebarList">
+             {/* Mail link */}
             <Link to="/mail" className="link">
               <li className="sidebarListItem">
                 <MailOutline className="sidebarIcon" />

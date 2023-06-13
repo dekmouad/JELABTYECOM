@@ -79,34 +79,57 @@ const header = styled.header`
 `
 
 export default function Login() {
+    // Initialize dispatch and state variables
+
   const d = useDispatch();
   const [email,setEmail]= useState("");
   const [password,setPassword]= useState("");
-  const {chercher, error } = useSelector((state) => state.utilisateur);
+  const {search, error } = useSelector((state) => state.utilisateur);
+    // Handle login button click
+
   const Click = (e) => {
     e.preventDefault();
     login(d, { email, password });
   }; 
-  
+    // Initialize history for navigation
+
   let history = useHistory();
+
   const lien = (e) => {
+      // Handle registration link click
+
     history.push("/register");
   };
+    // Handle home link click
   const home = (e) => {
     history.push("/");
   };
 return (
     <Container>
+            {/* Home link */}
+
     <header> <Link onClick={home}><Home style={{ marginLeft:"35px",marginTop :"15px",fontSize:"30px" }}/> </Link></header>
     <MiniContainer>    
     <Wrapper>
       <Title>CONNECTION</Title>
       <Form>
+                    {/* Display error message if present */}
+
         {error && <Error>YOU NEED TO VERIFY YOUR EMAIL AND PASSWORD !!</Error>}
+                    {/* Email input field */}
+
         <Input placeholder="email" onChange={(e) => setEmail(e.target.value) }/>
+                    {/* Password input field */}
+
         <Input placeholder="password" onChange={(e) => setPassword(e.target.value) } type="password"/>
-        <Button onClick={Click} >GET CONNECTED</Button>        
+                    {/* Login button */}
+
+        <Button onClick={Click} >GET CONNECTED</Button>     
+                    {/* Forgot password link */}
+   
         <Link style={{ marginTop : "20px" }}>DO NOT YOU REMEMBER THE PASSWORD ?</Link>
+                    {/* Registration link */}
+
         <Link onClick={lien}>CREATE A NEW ACCOUNT</Link>
       </Form>
     </Wrapper>

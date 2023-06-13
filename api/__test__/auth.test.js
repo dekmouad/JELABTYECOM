@@ -1,5 +1,7 @@
 const app = require("../index.js");
 supertest = require('supertest');
+// Test case: Register with email and username already used
+
 describe('Authentication', () => {
     describe('register with email and username already used' , () => {
         it('should return a 500', async() =>{
@@ -16,6 +18,8 @@ describe('Authentication', () => {
         })        
     })
 })
+// Test case: Register
+
 describe('Authentication', () => {
     describe('Register' , () => {
         it('should return a 201', async() =>{
@@ -26,18 +30,19 @@ describe('Authentication', () => {
             lastname: "saad",
             password: "sara"
         }
-        const {body , statusCode} = await supertest(app).post(`/api/auth/inscrire`)
+        const {body , statusCode} = await supertest(app).post(`/api/auth/register`)
         .send(register);
         expect(statusCode).toBe(500);
         })        
     })
 })
+// Test case: Login
 describe('Authentication', () => {
     describe('Login' , () => {
         it('should return a 200 and user', async() =>{
         const login = {
-            email: "lamiae@gmail.com",
-            password: "lamiae"
+            email: "admin@gmail.com",
+            password: "123456"
         }
         const {body , statusCode} = await supertest(app).post(`/api/auth/login`)
         .send(login);
@@ -46,12 +51,13 @@ describe('Authentication', () => {
         })        
     })
 })
+// Test case: Login with a wrong password
 describe('Authentication', () => {
     describe('Login with a wrong passwprd' , () => {
         it('should return a 401', async() =>{
         const login = {
-            email: "lamiae@gmail.com",
-            password: "lamiae1"
+            email: "admin@gmail.com",
+            password: "12e12"
         }
         const {body , statusCode} = await supertest(app).post(`/api/auth/login`)
         .send(login);
@@ -59,12 +65,13 @@ describe('Authentication', () => {
         })        
     })
 })
+// Test case: Login with a wrong mail
 describe('Authentication', () => {
     describe('Login with a wrong mail' , () => {
         it('should return a 401', async() =>{
         const login = {
             email: "error@gmail.com",
-            password: "lamiae1"
+            password: "123456"
         }
         const {body , statusCode} = await supertest(app).post(`/api/auth/login`)
         .send(login);

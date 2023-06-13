@@ -13,13 +13,13 @@ router.post("/send",getAllMail ,(req, res) => {
       let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         auth: {
-          user: "ecomm.fitop@gmail.com", // generated ethereal user
-          pass: "talbi123456789", // generated ethereal password
+          user: "jelabty@gmail.com", // generated ethereal user
+          pass: "123456789", // generated ethereal password
         },
       });
 
      await transporter.sendMail({
-        from: "ecomm.fitop@gmail.com", // sender address
+        from: "ecomm.jelabty@gmail.com", // sender address
         bcc : members, // list of receivers
         subject: req.body.object, // Subject line
         text: req.body.text

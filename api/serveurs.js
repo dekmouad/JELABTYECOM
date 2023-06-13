@@ -11,9 +11,14 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
 const app = express();
 
+// Enable Cross-Origin Resource Sharing
 
     app.use(cors());
+    // Parse incoming requests with JSON payloads
+
     app.use(express.json());
+    // Register the route handlers
+
     app.use("/api/auth", authRoute);
     app.use("/api/users", userRoute);
     app.use("/api/products", productRoute);
@@ -21,6 +26,8 @@ const app = express();
     app.use("/api/orders", orderRoute);
     app.use("/api/checkout", stripeRoute);
     app.use("/api/newsletter", newsLetter);
+    // Serve the Swagger UI for API documentation
+
     app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
     

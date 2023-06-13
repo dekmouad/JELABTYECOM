@@ -83,6 +83,8 @@ const Button = styled.button`
 
 function Slider() {
    const [slideIndex, setSlideIndex] = useState(0);
+     // Function to handle arrow click
+
    const handleClick =(direction) => {
        if (direction === "left"){
         setSlideIndex(slideIndex > 0 ? slideIndex -1 : 2);
@@ -92,16 +94,24 @@ function Slider() {
    };
   return (
     <Container>
+              {/* Left arrow */}
+
         <Arrow direction="left" onClick={()=>handleClick("left")}>
             <ArrowLeftOutlined/>
         </Arrow>
+         {/* Wrapper for slides */}
         <Wrapper slideIndex={slideIndex}>
           {sliderItems.map((items) => (
+            
             <Slide key={items.id}>
+                            {/* Image container */}
+
                 <ImageContainer> <Image  src={items.img} /> </ImageContainer>                
             </Slide> 
            ))}         
         </Wrapper>
+              {/* Right arrow */}
+
         <Arrow direction="right" onClick={()=>handleClick("right")}>
             <ArrowRightOutlined/>
         </Arrow>

@@ -9,6 +9,7 @@ import { userRequest } from "../../requestMethods";
 export default function Home() {
   const [userStats, setUserStats] = useState([]);
 
+  // Define an array of months
   const MONTHS = useMemo(
     () => [
       "Jan",
@@ -31,6 +32,7 @@ export default function Home() {
     const getStats = async () => {
       try {
         const res = await userRequest.get("/users/stats");
+          // Map the data to the userStats state array
         res.data.map((item) =>
           setUserStats((prev) => [
             ...prev,
@@ -44,7 +46,9 @@ export default function Home() {
 
   return (
     <div className="home">
+      {/* Display the featured information */}
       <FeaturedInfo />
+        {/* Display the user analytics chart */}
       <Chart
         data={userStats}
         title="User Analytics"
@@ -52,7 +56,9 @@ export default function Home() {
         dataKey="Active User"
       />
       <div className="homeWidgets">
+          {/* Display the small widget */}
         <WidgetSm />
+         {/* Display the large widget */}
         <WidgetLg />
       </div>
     </div>

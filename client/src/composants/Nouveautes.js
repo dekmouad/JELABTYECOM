@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { sendMail } from '../redux/FontionAPI';
 import mobile from '../responsive';
 
+// style for component newsletter 
 const Container = styled.div`
    height: 60vh;
    background-color: #f0f0f0;
@@ -46,11 +47,13 @@ const Button = styled.button`
 
 export default function Nouveautes() {
    const [inputs, setInputs] = useState();
-  
+     // Handler for input field changes
+
    const handleChange = (e) => {
      setInputs((prev) => {
        return { ...prev, [e.target.name]: e.target.value };
      });}
+   // Handler for subscribe button click
 
      const handleClick =  (e)  => {
       e.preventDefault();

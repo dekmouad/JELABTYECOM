@@ -7,11 +7,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
+    // Function to handle the login button click
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { email: email, password });
   };
 
+  
+  // Render the login form
   return (
     <div
       style={{

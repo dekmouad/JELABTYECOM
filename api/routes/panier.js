@@ -3,10 +3,11 @@ const { creerPanier,majPanier,seulPanier} = require("../controllers/panier");
 
 const router = require("express").Router();
 
+// Define the "/panier" routes
 
-router.post("/", creerPanier);
-router.put("/:userId", majPanier);
-router.get("/find/:userId", seulPanier);
+router.post("/", creerPanier);// Create a new Cart
+router.put("/:userId", majPanier);//Update a Cart
+router.get("/find/:userId", seulPanier); // Get a specific Cart
 
 
 module.exports = router;

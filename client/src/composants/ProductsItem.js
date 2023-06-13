@@ -68,11 +68,15 @@ export default function ProductsItem({items}) {
        <Image src={items.img}/>
        <Info>
            <Icon>
+             {/* Link to product details */}
+
            <Link to={`/produit/${items._id}`}>
           <SearchOutlined style={{color: "black"}} />
           </Link>
            </Icon>
            <Icon>
+             {/* Link to add product to cart */}
+
            <Link to={`/produit/${items._id}`}>
                <ShoppingCartOutlined style={{color: "black"}} />
             </Link>

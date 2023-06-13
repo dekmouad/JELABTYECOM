@@ -17,17 +17,20 @@ import {
   export default function Mail() {
     const [inputs, setInputs] = useState();
   
+      // Function to handle input changes
     const handleChange = (e) => {
       setInputs((prev) => {
         return { ...prev, [e.target.name]: e.target.value };
       });
     };
   
+     // Function to handle the send button click
     const handleClick =  (e)  => {
       e.preventDefault();
       sendMail(inputs);
     };
   
+    // Render the Mail component
     return (
       <div className="user">
         <div className="userTitleContainer">

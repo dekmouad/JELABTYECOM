@@ -1,5 +1,7 @@
 const app = require("../index.js");
 supertest = require('supertest');
+// Test case: Create order
+
 describe('orders', () => {
     describe('create order ' , () => {
         it('should return a 200', async() =>{
@@ -23,6 +25,8 @@ describe('orders', () => {
         })        
     })
 })
+// Test case: Create a user order by another user
+
 describe('orders', () => {
     describe('create a user order by another user' , () => {
         it('should return a 403', async() =>{
@@ -46,6 +50,8 @@ describe('orders', () => {
         })        
     })
 })
+// Test case: Update order by admin
+
 describe('orders', () => {
     describe('update order by admin' , () => {
         it('should return a 200', async() =>{
@@ -66,10 +72,13 @@ describe('orders', () => {
         const {body , statusCode} = await supertest(app).put(`/api/orders/${orderID}`)
         .set('token',`Bearer ${tokenJWT}`)
         .send(updateorder);
+              // Expect the response status code to be 200
         expect(statusCode).toBe(200);
         })        
     })
 })
+// Test case: Update order by user
+
 describe('orders', () => {
     describe('update order by user' , () => {
         it('should return a 403', async() =>{
@@ -90,10 +99,13 @@ describe('orders', () => {
         const {body , statusCode} = await supertest(app).put(`/api/orders/${orderID}`)
         .set('token',`Bearer ${tokenJWT}`)
         .send(updateorder);
+              // Expect the response status code to be 403
         expect(statusCode).toBe(403);
         })        
     })
 })
+// Test case: Delete order by admin
+
 describe('orders', () => {
     describe('delete order by admin' , () => {
         it('should return a 201', async() =>{
@@ -101,10 +113,12 @@ describe('orders', () => {
         const orderID='623b8b2b44b3b32991abd0cd'        
         const {body , statusCode} = await supertest(app).delete(`/api/orders/${orderID}`)
         .set('token',`Bearer ${tokenJWT}`);
+              // Expect the response status code to be 200
         expect(statusCode).toBe(200);
         })        
     })
 })
+//delete order by a random user
 describe('orders', () => {
     describe('delete order by a random user' , () => {
         it('should return a 403', async() =>{
@@ -112,10 +126,13 @@ describe('orders', () => {
         const orderID='623b6788c9c561edf5f53e20'        
         const {body , statusCode} = await supertest(app).delete(`/api/orders/${orderID}`)
         .set('token',`Bearer ${tokenJWT}`);
+              // Expect the response status code to be 403
         expect(statusCode).toBe(403);
         })        
     })
 })
+
+//get order by admin
 describe('orders', () => {
     describe('get order by admin ' , () => {
         it('should return a 200', async() =>{
@@ -123,10 +140,13 @@ describe('orders', () => {
         const userID='6239e0cd81687d75c6ef3eaf'        
         const {body , statusCode} = await supertest(app).get(`/api/orders/find/${userID}`)
         .set('token',`Bearer ${tokenJWT}`);
+              // Expect the response status code to be 200
         expect(statusCode).toBe(200);
         })        
     })
 })
+// Test case: get order by random user
+
 describe('orders', () => {
     describe('get order by random user ' , () => {
         it('should return a 403', async() =>{
@@ -134,16 +154,22 @@ describe('orders', () => {
         const userID='6239e0cd81687d75c6ef3eaf'        
         const {body , statusCode} = await supertest(app).get(`/api/orders/find/${userID}`)
         .set('token',`Bearer ${tokenJWT}`);
+        // Expect the response status code to be 403
+
         expect(statusCode).toBe(403);
         })        
     })
 })
+
+//get All orders
 describe('orders', () => {
     describe('get All orders' , () => {
         it('should return a 200', async() =>{
         const tokenJWT= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmJhZWU1NjhmYjIwMGRkNTA1ZGE0OCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0ODA1MTczOCwiZXhwIjoxNjQ4MzEwOTM4fQ.twIsIpH9lX5EX0cU5R8rlVUMAY2wffYcGUkvNWVrSj8'
         const {body , statusCode} = await supertest(app).get(`/api/orders/`)
         .set('token',`Bearer ${tokenJWT}`);
+        // Expect the response status code to be 200
+
         expect(statusCode).toBe(200);
         })        
     })

@@ -25,12 +25,18 @@ const persistedReducerPanier = persistReducer(persistConfig,panierReducer);
 const persistedReducerUser = persistReducer(persistConfig,utilisateurRedux);
 */
 
+// Combine the reducers
+
 const rootReducer = combineReducers({
     wishlist: wishlistReducer,
     panier: panierReducer,
     utilisateur: utilisateurRedux,
 });
+// Apply redux-persist to the root reducer
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+// Configure the store
+
 export const store= configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
@@ -41,6 +47,7 @@ export const store= configureStore({
         }),
     
   });
+// Create the persistor
 
 export let persistor = persistStore(store);
   

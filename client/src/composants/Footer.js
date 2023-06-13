@@ -11,7 +11,7 @@ import React from 'react'
 import styled from 'styled-components'
 import mobile from '../responsive';
 
-
+// Styled component
 const Container = styled.div`
     display: flex;
     ${mobile({flexDirection:"column"})}
@@ -81,16 +81,19 @@ const SocialIcon = styled.div`
 
 export default function Footer() {
   return (
+     // Container for the footer section
     <Container>
+      {/* Left section */}
       <Left>
           <Logo>JELABTY</Logo>
           <Description> jelabty is an online store specializing in Moroccan traditional clothing and accessories. We bring together 
             renowned brands and designers to offer a premium consumer experience. Our carefully curated selection includes a 
             variety of authentic Moroccan garments, such as caftans, djellabas, takchitas, and babouches, crafted with high-quality 
-            fabrics and adorned with traditional embroideries and patterns. At Fitop, we are dedicated to preserving and celebrating 
+            fabrics and adorned with traditional embroideries and patterns. At Jellabty, we are dedicated to preserving and celebrating 
             Morocco's cultural heritage through our collection of traditional clothing, 
             providing customers with an opportunity to connect with the craftsmanship and richness of Moroccan tradition. 
         </Description>    
+        {/* Social media icons */}
         <SocialContainer>
           <SocialIcon color="3B5999">
             <Facebook />
@@ -106,6 +109,7 @@ export default function Footer() {
           </SocialIcon>
         </SocialContainer>    
       </Left>
+      {/* Right section */}
       <Right>
           <Title> CONTACT US </Title>
           <ContactItem>

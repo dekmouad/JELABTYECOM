@@ -9,6 +9,8 @@ import {login, logout} from "../redux/FontionAPI"
 import mobile from '../responsive'
 import {useHistory} from "react-router-dom";
 
+// styled component for the navbar
+
 const Container = styled.div`
   height: 60px;
   margin-top: -10px;
@@ -56,7 +58,7 @@ const SearchContainer = styled.div`
   flex: 8;
   cursor: pointer;
 
-  ${mobile({marginLeft: "50px", width: "60px", border: "0.5px solid #E0E0E0"})}
+  ${mobile({marginLeft: "50px", width: "60px", border: "0.5px solid #E0E0E0",})}
 `
 const Input = styled.input`
   border: none;
@@ -81,6 +83,7 @@ const MenuItem = styled.div`
 const A = styled.div`
   display: flex
 `
+// Navbar component
 
 function Navbar({search}) {
     const wishlistQ = useSelector(state => state.wishlist.quantite);
@@ -90,16 +93,18 @@ function Navbar({search}) {
 
     const [searchState, setSearchState] = useState();
     const history = useHistory();
-
+ // Handler for search input change
     const handelChangeRecherche = (e) => {
         const keySearch = e.target.value;
         setSearchState(keySearch);
     };
+  // Handler for search button click
 
     const clickSearch = (e) => {
         e.preventDefault();
         history.push(`/produits/search/${searchState}`);
     };
+  // Handler for disconnect link click
 
     const clickDeconnecter = (e) => {
         e.preventDefault();
@@ -133,6 +138,8 @@ function Navbar({search}) {
 
                         </A>
                     }
+                              {/* Display cart and wishlist links with badge counts */}
+
                     <MenuItem>
                         <Link to="/Panier">
                             <Badge badgeContent={panierQ} color="primary">

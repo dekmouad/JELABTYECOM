@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 
+// Styled component
 const Container = styled.div`
     font-size: 20px;
     font-weight:500;
@@ -87,25 +88,29 @@ const RightW = styled.button`
 
 export default function MenuNavbar() {  
 let history = useHistory();
+  // Event handler for the Home button
 const home = (e) => {
 history.push("/");
 };
+// Event handler for the Women button
 const women = (e) => {
 history.push("/produits/women");
 };
+  // Event handler for the Men button
 const men = (e) => {
 history.push("/produits/men");
 };
+  // Event handler for the Kids button
 const kids = (e) => {
 history.push("/produits/kids");
 };
   return ( 
     <Container>        
             <Menu>
-                 <Left onClick={home}>Home</Left>
-                 <Center onClick={women}>WOMEN</Center>
-                 <Right onClick={men} >MEN</Right>
-                 <RightW onClick={kids}>KIDS</RightW>
+                 <Left onClick={home}>Home</Left>{/* Home button */}
+                 <Center onClick={women}>WOMEN</Center>   {/* Women button */}
+                 <Right onClick={men} >MEN</Right>      {/* Men button */}
+                 <RightW onClick={kids}>KIDS</RightW>      {/* Kids button */}
             </Menu>
     </Container>)
 }

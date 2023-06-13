@@ -23,7 +23,7 @@ export default function NewProduct() {
   const dispatch = useDispatch();
   let history = useHistory();
 
-
+ // Function to handle input changes
   const handleChange = (e) => {
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -34,23 +34,29 @@ export default function NewProduct() {
   console.log(color)
   console.log(size)
   console.log(cat)
+
+  // Function to handle category selection
   const handleCat = (e) => {
     setCat(e.target.value.split(","));
   };
 
+  // Function to handle color selection
   const handleColor = (e) => {
     setColor(e.target.value.split(","));
   };
 
+  // Function to handle size selection
   const handleSize = (e) => {
     setSize(e.target.value.split(","));
   };
 
+  // Function to handle type selection
   const handleType = (e) => {
     setType(e.target.value.split(","));
   };
 
 
+  // Function to handle the "Create" button click
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -78,7 +84,7 @@ export default function NewProduct() {
         }
       },
       (error) => {    
-        
+           // Handle upload error
       },
       () => {        
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -89,7 +95,7 @@ export default function NewProduct() {
       }
     );
   };
-
+  // Render the NewProduct page
   return (
     <div className="newProduct">
       {isLoading && <Spinner/>}

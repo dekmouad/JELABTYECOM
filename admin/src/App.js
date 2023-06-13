@@ -15,6 +15,7 @@ import Mail from "./pages/mail/Mail";
 import { useSelector } from "react-redux";
 
 function App() {
+   // Retrieve the 'currentUser' and 'isAdmin' values from the Redux store using the 'useSelector' hook
   const admin = useSelector((state) =>
     state.user.currentUser ? state.user.currentUser.isAdmin : null
   );
@@ -23,34 +24,45 @@ function App() {
       <Switch>
         {admin ? (
           <>
+           {/* Render the top bar */}
             <Topbar />
             <div className="container">
+               {/* Render the sidebar */}
               <Sidebar />
               <Route exact path="/">
+                 {/* Render the Home component */}
                 <Home />
               </Route>
               <Route path="/users">
+                {/* Render the UserList component */}
                 <UserList />
               </Route>
               <Route path="/user/:userId">
+                {/* Render the User component */}
                 <User />
               </Route>
               <Route path="/products">
+                {/* Render the ProductList component */}
                 <ProductList />
               </Route>
               <Route path="/product/:productId">
+                 {/* Render the Product component */}
                 <Product />
               </Route>
               <Route path="/newproduct">
+                {/* Render the NewProduct component */}
                 <NewProduct />
               </Route>
               <Route path="/orders">
+                {/* Render the Orders component */}
                 <Orders />
               </Route>
               <Route path="/order/:orderId">
+                 {/* Render the Order component */}
                 <Order />
               </Route>
               <Route path="/mail">
+                  {/* Render the Mail component */}
                 <Mail />
               </Route>
             </div>

@@ -15,6 +15,7 @@ export default function Products({ categorie, filtre, sort,search }) {
     const [produits, setProduits] = useState([]);
     const [produitsFiltrer, setproduitsFiltrer] = useState([]);
 
+    // Fetch products based on category or search
 
     useEffect(() => {
       const getProduits = async () => {
@@ -30,7 +31,10 @@ export default function Products({ categorie, filtre, sort,search }) {
         } catch (err) {console.log("error")}
       }; getProduits()}, [categorie,search]);
 
+       
+
     useEffect(() => {
+         // Apply filters to products
       (categorie || search) &&  setproduitsFiltrer(
         produits.filter((item) =>
             Object.entries(filtre).every(([key, value]) =>
@@ -40,6 +44,8 @@ export default function Products({ categorie, filtre, sort,search }) {
         ); }, [produits, categorie, filtre,search]);
 
     useEffect(() => {
+          // Sort products based on selected option
+
       if (sort === "most new") {
         setproduitsFiltrer((prev) => [...prev].sort((a, b) => a.createdAt - b.createdAt));
       } else if (sort === "Price low to high") { setproduitsFiltrer((prev) => [...prev].sort((a, b) => a.price - b.price) );

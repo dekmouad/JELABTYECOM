@@ -66,20 +66,38 @@ const Input= styled.button`
 `
 
 export default function ListeProduits() {
+    // Get the current location
+
   const Lieu = useLocation();
+    // Extract the category from the pathname
+
   const categorie = Lieu.pathname.split("/")[2];
+    // Initialize state variables
+
   const [sort, setSort] = useState("les plus récents");
   const [filtre, setFiltres] = useState({});
  console.log(filtre, categorie);
   return (
     <Container>
+              {/* Navbar component */}
+
         <Navbar/>
+                {/* MenuNavbar component */}
+
         <MenuNavbar/>
-        <Header>                          
+        <Header>            
+                    {/* Go back button */}
+              
         <Retour> <Link to="/"><ArrowBackIos style={ {color: "black"}}/></Link> </Retour>
+                  {/* Category title */}
+
         <Title>{categorie}</Title>
         </Header>
+                {/* Filter container */}
+
         <FiltreContainer>
+                         {/* Color filter */}
+
             <Filtre>
                <Select name="color" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
                   <Option disabled selected> Color </Option>
@@ -95,6 +113,8 @@ export default function ListeProduits() {
                   <Option value="gray">Gray</Option>
                   <Option value="broown">Brown</Option>
                 </Select>
+                               {/* Size filter */}
+
                <Select name="size" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
                   <Option disabled selected> Size</Option>
                   <Option>XXS</Option>
@@ -105,7 +125,9 @@ export default function ListeProduits() {
                   <Option>XL</Option>
                   <Option>XXL</Option>
                 </Select>
-                <Select name="brand" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
+                                {/* style filter */}
+
+                <Select name="style" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
                   <Option disabled selected> Style</Option>
                   <Option>Jellaba</Option>
                   <Option>Caftan</Option>
@@ -114,6 +136,8 @@ export default function ListeProduits() {
                   <Option>Gandoura</Option>
                
                 </Select>
+                                {/* Type filter */}
+
                 <Select name="type" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
                   <Option disabled selected> Type</Option>
                   <Option>Trousers</Option>
@@ -122,9 +146,12 @@ export default function ListeProduits() {
                   <Option>shoes</Option>
                   <Option>Sweatshirt</Option>
                 </Select>
+                                {/* Reset filters button */}
+
                 <Input onClick={(e) => setFiltres({})}> X </Input>
             </Filtre>
-            
+                          {/* Sort by filter */}
+
             <Filtre>
               <Select onChange={(e) => setSort(e.target.value)}> 
                   <Option value="most new">Newest</Option>
@@ -133,8 +160,14 @@ export default function ListeProduits() {
                </Select>
            </Filtre>            
         </FiltreContainer>
+                      {/* Sort by filter */}
+
         <Products categorie={categorie} filtre={filtre} sort={sort}/>
+                {/* newsletter component */}
+
         <Nouveautes/>
+                {/* Footer component */}
+
         <Footer/>
     </Container>
   )

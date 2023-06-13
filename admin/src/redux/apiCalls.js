@@ -27,6 +27,8 @@ import {
 } from "./usersRedux";
 import { deleteordersFailure, deleteordersStart, deleteordersSuccess, getordersFailure, getordersStart, getordersSuccess, updateordersFailure, updateordersStart, updateordersSuccess } from "./ordersRedux";
 
+// User login
+
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
@@ -37,16 +39,19 @@ export const login = async (dispatch, user) => {
     dispatch(loginFailure());
   }
 };
+// User logout
 
 export const deconnecter = async (dispatch) => {
   dispatch(logout());
 };
+// Send mail
 
 export const sendMail = async (mail) => {
   try {
     await userRequest.post("/newsletter/send", mail);
   } catch (err) {}
 };
+// Get products
 
 export const getProducts = async (dispatch) => {
   dispatch(getProductStart());
@@ -57,6 +62,7 @@ export const getProducts = async (dispatch) => {
     dispatch(getProductFailure());
   }
 };
+// Delete a product
 
 export const deleteProduct = async (id, dispatch) => {
   dispatch(deleteProductStart());
@@ -67,6 +73,7 @@ export const deleteProduct = async (id, dispatch) => {
     dispatch(deleteProductFailure());
   }
 };
+// Update a product
 
 export const updateProduct = async (id, product, dispatch) => {
   dispatch(updateProductStart());
@@ -77,6 +84,7 @@ export const updateProduct = async (id, product, dispatch) => {
     dispatch(updateProductFailure());
   }
 };
+// Get orders
 
 export const getOrders = async (dispatch) => {
   dispatch(getordersStart());
@@ -87,6 +95,7 @@ export const getOrders = async (dispatch) => {
     dispatch(getordersFailure());
   }
 };
+// Delete an order
 
 export const deleteOrders = async (id, dispatch) => {
   dispatch(deleteordersStart());
@@ -97,6 +106,7 @@ export const deleteOrders = async (id, dispatch) => {
     dispatch(deleteordersFailure());
   }
 };
+// Update an order
 
 export const updateOrders = async (id, order, dispatch) => {
   dispatch(updateordersStart());
@@ -107,6 +117,8 @@ export const updateOrders = async (id, order, dispatch) => {
     dispatch(updateordersFailure());
   }
 };
+// Add a product
+
 export const addProduct = async (product, dispatch) => {
   dispatch(addProductStart());
   try {
@@ -117,6 +129,7 @@ export const addProduct = async (product, dispatch) => {
   }
 };
 
+// Get users
 
 export const getUsers = async (dispatch) => {
   dispatch(getUsersStart());
@@ -127,6 +140,7 @@ export const getUsers = async (dispatch) => {
     dispatch(getUsersFailure());
   }
 };
+// Update a user
 
 export const updateUsers = async (id, user, dispatch) => {
   dispatch(updateUsersStart());
@@ -137,6 +151,7 @@ export const updateUsers = async (id, user, dispatch) => {
     dispatch(updateUsersFailure());
   }
 };
+// Delete a user
 
 export const deleteUser = async (id, dispatch) => {
   dispatch(deleteUsersStart());

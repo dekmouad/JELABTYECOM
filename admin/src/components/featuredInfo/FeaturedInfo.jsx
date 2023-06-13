@@ -8,6 +8,7 @@ export default function FeaturedInfo() {
   const [perc, setPerc] = useState(0);
 
   useEffect(() => {
+    // Function to fetch income data
     const getIncome = async () => {
       try {
         const res = await userRequest.get("orders/income");
@@ -24,9 +25,12 @@ export default function FeaturedInfo() {
   return (
     <div className="featured">
       <div className="featuredItem">
+         {/* Title */}
         <span className="featuredTitle">Revanue</span>
         <div className="featuredMoneyContainer">
+           {/* Display income amount */}
           <span className="featuredMoney">${income[1]?.total}</span>
+           {/* Display percentage change and arrow icon */}
           <span className="featuredMoneyRate">
             %{Math.floor(perc)}{" "}
             {perc < 0 ? (
@@ -36,6 +40,7 @@ export default function FeaturedInfo() {
             )}
           </span>
         </div>
+         {/* Subtext */}
         <span className="featuredSub">Compared to last month</span>
       </div>
     </div>

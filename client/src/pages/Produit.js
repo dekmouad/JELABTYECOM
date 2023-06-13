@@ -138,14 +138,20 @@ const Button = styled.button`
   ${mobile({ width: "200px" })}
 `;
 export default function Produit() {
+    // Retrieve current URL location and extract product ID from it
   const lien = useLocation();
   const id = lien.pathname.split("/")[2];
+    // State variables
+
   const [produit, setProduit] = useState({});
   const [quantite, setQuantite] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
+    // Retrieve current user from the Redux store
+
   const utilisateur = useSelector((state) => state.utilisateur.utilisateursCourant);
   const produits = useSelector(state => state.panier.produits);
+  // Fetch product data based on the ID
 
   useEffect(() => {
     const getProduit = async () => {
@@ -156,14 +162,19 @@ export default function Produit() {
     };
     getProduit();
   }, [id]);
+  // Modify quantity based on the type (remove or add)
 
   const MODQuantite = (type) => {
     if (type === "remove") { quantite > 1 && setQuantite(quantite - 1);} 
     else {setQuantite(quantite + 1); }
   }; 
+    // Initialize dispatch
+
   const P = useDispatch();
   const F = useDispatch();
   const S = useDispatch();
+    // Handle add to cart button click
+
   const MODClick = () => {
       if(utilisateur!=null){
      (color!=="" && size !=="") ?
@@ -174,13 +185,17 @@ export default function Produit() {
       }
   };
   
+  // Retrieve wishlist data from the Redux store
 
   const wishlist = useSelector((state) => state.wishlist);
   let url = "/login";
   let history = useHistory();
+  // Check if the product is already in the wishlist
 
   const existeProduit =  wishlist.produits.filter(prod => prod._id === produit._id )
+
   console.log(existeProduit)
+  // Handle add/remove from wishlist button click
 
   const R =() =>{
 
@@ -208,12 +223,16 @@ export default function Produit() {
             <Price>{produit.price},00 €</Price>
             <FilterContainer>
              <Filter>
+                          {/* Color filters */}
+
               <FilterTitle>Color :</FilterTitle>
               {produit.color?.map((c) => (
                 <FilterColor color={c} key={c} onClick={() => setColor(c)} />
               ))}
              </Filter>
              <Filter>
+                          {/* Size filters */}
+
               <FilterTitle>Size :</FilterTitle>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
               <FilterSizeOption disabled selected> Size </FilterSizeOption>
@@ -225,12 +244,18 @@ export default function Produit() {
             </FilterContainer>
             <AddContainer>
              <AmountContainer>
+                            {/* Quantity controls */}
+
               <Remove style={{cursor: "pointer"}} onClick={() => MODQuantite("remove")}/>
               <Amount>{quantite}</Amount>
               <Add style={{cursor: "pointer"}} onClick={() => MODQuantite("add")} />
              </AmountContainer>
              <Filter>
-             <Button onClick={MODClick}>ADD TO CART</Button>             
+                            {/* Add to cart button */}
+
+             <Button onClick={MODClick}>ADD TO CART</Button>       
+                           {/* Wishlist button */}
+      
              {
                existeProduit.length === 0 ? <FavoriteBorderOutlined style={{marginLeft: "10px", fontSize:"35px", cursor:"pointer"}}  onClick={R}/>   :
               <Favorite style={{marginLeft: "10px", fontSize:"35px", cursor:"pointer"}}  onClick={R}/>    

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Create a users slice
 export const usersSlice = createSlice({
     name: "users",
     initialState: {
@@ -8,6 +9,7 @@ export const usersSlice = createSlice({
         error: false,
     },
     reducers: {
+        // GET ALL users actions
         //GET ALL
         getUsersStart: (state) => {
             state.isFetching = true;
@@ -21,6 +23,7 @@ export const usersSlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
+        // DELETE user action
         //DELETE
         deleteUsersStart: (state) => {
             state.isFetching = true;
@@ -37,6 +40,7 @@ export const usersSlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
+        // UPDATE user action
         //UPDATE
         updateUsersStart: (state) => {
             state.isFetching = true;
@@ -55,6 +59,7 @@ export const usersSlice = createSlice({
     },
 });
 
+// Extract the action creators and reducer
 export const {
     getUsersStart,
     getUsersSuccess,

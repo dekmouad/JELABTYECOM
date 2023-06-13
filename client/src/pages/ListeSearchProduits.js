@@ -60,11 +60,18 @@ const Option = styled.option`
 
 
 export default function ListeSearchProduits() {
+    // Get the current location
+
   const Lieu = useLocation();
+    // Extract the search query from the pathname
+
   const search = Lieu.pathname.split("/")[3];
+    // Initialize state variables
+
   const [stateSearch , setStateSearch] = useState();
   const [sort, setSort] = useState("les plus récents");
   const [filtre, setFiltres] = useState({});
+  // Handle search input change
 
   const handleChange = (e) => {
     setStateSearch(e.target.value);
@@ -72,13 +79,23 @@ export default function ListeSearchProduits() {
 
   return (
     <Container>
+              {/* Navbar component with search input */}
+
         <Navbar search={handleChange}/>
+                {/* MenuNavbar component */}
+
         <MenuNavbar/>
-        <Header>                          
+        <Header>             
+                    {/* Go back button */}
+             
         <Retour> <Link to="/"><ArrowBackIos style={ {color: "black"}}/></Link> </Retour>
         </Header>
+                {/* Filter container */}
+
         <FiltreContainer>
             <Filtre>
+                             {/* Size filter */}
+
                <Select name="color" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
                   <Option disabled selected> Color </Option>
                   <Option value="white">White</Option>
@@ -102,7 +119,9 @@ export default function ListeSearchProduits() {
                   <Option>XL</Option>
                   <Option>XXL</Option>
                 </Select>
-                <Select name="brand" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
+                                {/* sstyle filter */}
+
+                <Select name="style" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
                 <Option disabled selected> Style</Option>
                   <Option>Jellaba</Option>
                   <Option>Caftan</Option>
@@ -111,6 +130,8 @@ export default function ListeSearchProduits() {
                   <Option>Gandoura</Option>
                 </Select>
             </Filtre>
+                          {/* Sort by filter */}
+
             <Filtre>
               <Select onChange={(e) => setSort(e.target.value)}> 
               <Option value="plusrecent">Newest</Option>
@@ -119,8 +140,14 @@ export default function ListeSearchProduits() {
                </Select>
             </Filtre>
         </FiltreContainer>
+                {/* Products component with search query, filters, and sort */}
+
         <Products search={stateSearch ? stateSearch : search} filtre={filtre} sort={sort}/>
+                {/* Nouveautes component */}
+
         <Nouveautes/>
+                {/* Footer component */}
+
         <Footer/>
     </Container>
   )

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Create a user slice
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -8,6 +9,7 @@ const userSlice = createSlice({
     error: false,
   },
   reducers: {
+    // Login actions
     loginStart: (state) => {
       state.isFetching = true;
     },
@@ -19,11 +21,12 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+      // Logout action
     logout: (state) => {
       state.currentUser = null;
     },
   },
 });
-
+// Extract the action creators and reducer
 export const { loginStart, loginSuccess, loginFailure ,logout} = userSlice.actions;
 export default userSlice.reducer;

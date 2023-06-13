@@ -16,14 +16,16 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/"  component={Home}/>
-        <Route exact path="/produits/search/:keysearch" component={ListeSearchProduits}/>
-        <Route exact path="/produits/:categorie" component={ListeProduits}/>
-        <Route exact path="/produits" component={ListeProduits}/>
-        <Route exact path="/produit/:id" component={Produit}/>
-        <Route path="/panier" component={Panier}/>
-        <Route path="/favories" component={Favories}/>
+        <Route exact path="/"  component={Home}/>{/* Home page */}
+        <Route exact path="/produits/search/:keysearch" component={ListeSearchProduits}/> {/* Product search page */}
+        <Route exact path="/produits/:categorie" component={ListeProduits}/>{/* Products by category page */}
+        <Route exact path="/produits" component={ListeProduits}/>{/* All products page */}
+        <Route exact path="/produit/:id" component={Produit}/> {/* Single product page */}
+        <Route path="/panier" component={Panier}/>{/* Cart page */}
+        <Route path="/favories" component={Favories}/> {/* Favorites page */}
+         {/* Login page. Redirect to home if user is already logged in */}
         <Route path="/login">{utilisateur ? <Redirect to="/"/> : <Login />}</Route>
+        {/* Register page. Redirect to home if user is already logged in */}
         <Route path="/register">{utilisateur ? <Redirect to="/" /> : <Register />}</Route>
       </Switch>
     </Router>

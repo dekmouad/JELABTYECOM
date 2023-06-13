@@ -16,11 +16,13 @@ import Spinner from "../../components/Spinner/Spinner";
 import { DataGrid } from "@material-ui/data-grid";
 
 export default function Order() {
+   // React hooks and variables
   const location = useLocation();
   const dispatch = useDispatch();
   const orderId = location.pathname.split("/")[2];
   let history = useHistory();
 
+    // Select order and user from Redux state
   const order = useSelector((state) =>
     state.orders.orderss.find((order) => order._id === orderId)
   );
@@ -29,6 +31,7 @@ export default function Order() {
     state.users.users.find((user) => user._id === order.userId)
   );
 
+   // Callback function to map products
   const Callback = (product) => {
     const prod = useSelector((state) =>
       state.product.products.find((p) => p._id === product.productId)
@@ -37,12 +40,14 @@ export default function Order() {
   };
   const produits = order.products.map(Callback);
   console.log(produits);
+    // Event handler for confirming the order
   const handleClick = (e) => {
     e.preventDefault();
     updateOrders(order._id ,{...order , status : "valid"},dispatch )
     history.push("/orders")
   };
 
+   // DataGrid columns configuration
   const columns = [
     {
       field: "product",
@@ -82,6 +87,7 @@ export default function Order() {
     },
   ];
 
+  // Render the Order page
   return (
     <div className="user">
       <div className="userContainer">
@@ -105,7 +111,7 @@ export default function Order() {
             <div className="userUpdateRight">
               <div className="userUpdateUpload"></div>
                 <button className="userUpdateButton" onClick={handleClick} disabled={order.status !== "pending"}>
-                {order.status !== "pending" ?  "Deja Validé" : "Valider" }
+                {order.status !== "pending" ?  "Already Confirmed" : "Confirm" }
                 </button>
             </div>
           </form>

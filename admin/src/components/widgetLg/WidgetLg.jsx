@@ -15,6 +15,7 @@ export default function WidgetLg() {
     };
     getOrders();
   }, []);
+  // Button component
   const Button = ({ type }) => {
     return <button className={"widgetLgButton " + type}>{type}</button>;
   };
@@ -36,6 +37,7 @@ export default function WidgetLg() {
             <td className="widgetLgDate">{format(order.createdAt)}</td>
             <td className="widgetLgAmount">${order.amount}</td>
             <td className="widgetLgStatus">
+               {/* Render Button component with order status */}
               <Button type={order.status} />
             </td>
           </tr>

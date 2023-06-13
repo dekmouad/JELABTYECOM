@@ -177,30 +177,39 @@ const Button = styled.button`
 
 
 export default function Panier() {
+    // Retrieve cart items from the Redux store
+
   const panier = useSelector((state) => state.panier);
   const [stripeToken, setStripeToken] = useState(null);
   const utilisateur = useSelector((state) => state.utilisateur.utilisateursCourant);
   const history = useHistory();
+  // Handle token received from Stripe
 
   const Token = (token) => {
     setStripeToken(token);
   };
+  // Initialize dispatch
 
 const d = useDispatch();
+  // Handle empty cart button click
+
   const Click = () => {
     viderPanier(d,{userId:utilisateur._id});
   }; 
 
+  // Remove product from cart
 
   const fermer = (produit) =>{
     suppProduitPanierAPI(d,{userId:utilisateur._id ,produits : panier.produits , produit:produit})
   }
+  // Prepare product data for checkout
 
 
   const prods = panier.produits.map((product) => ({
     productId: product._id,
     quantity: product.quantity,
   }));
+  // Process payment and create order
 
   useEffect(() => {
     const makeRequest = async () => {
@@ -235,7 +244,7 @@ const d = useDispatch();
              <Link to={`/produits`}>
              <TopButton> Continue Shopping </TopButton>
              </Link>
-             <TopButton type="check" onClick={Click}> Confirm Your Cart</TopButton>
+             <TopButton type="check" onClick={Click}> Empty Your Cart </TopButton>
          </Top>
          <Bottom>
          <Info>               
@@ -281,6 +290,8 @@ const d = useDispatch();
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{panier.total>100 || panier.total==0  ? panier.total : panier.total+15}.00 €</SummaryItemPrice>
             </SummaryItem>
+                        {/* Stripe checkout component */}
+
             <StripeCheckout
               name="Jelabty"         
               image="https://i.ibb.co/DG7BtBD/6212fc22-67bf-4050-ab6a-13a9257cd6f8-removebg-preview.png" 

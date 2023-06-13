@@ -22,6 +22,7 @@ export default function WidgetSm() {
       <ul className="widgetSmList">
         {users.map((user) => (
           <li className="widgetSmListItem" key={user._id}>
+            {/* Display user avatar */}
             <img
               src={
                 user.img ||
@@ -31,8 +32,10 @@ export default function WidgetSm() {
               className="widgetSmImg"
             />
             <div className="widgetSmUser">
+                {/* Display username */}
               <span className="widgetSmUsername">{user.username}</span>
             </div>
+              {/* Button to view user details */}
             <button className="widgetSmButton">
               <Visibility className="widgetSmIcon" />
               Display
